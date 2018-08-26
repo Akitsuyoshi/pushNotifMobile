@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Alert, Button } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends React.Component {
+type Props = {};
+
+export default class App extends Component<Props> {
   componentDidMount() {
     console.log('here is invoked after render is finished');
   }

@@ -84,11 +84,11 @@ It runs the jest test runner.
 Jest configures test file by its extention(for example: app.test) or files in `__test__` directory.
 
 
-`yarn run ios`
+`yarn ios`
 
 It starts to open ios simulator in mac if xcode is installed.
 
-`yarn run eject`
+`yarn eject`
 
 It is used when you publish your app to App Store, Google Play, or Expo.
 
@@ -114,7 +114,15 @@ Now you have debugger tool and set it up, you can use the tool by hit this scrip
 
 `yarn dev`
 
+Basically, you use that script on development with react native debugger.
+
 (You can see what happened in the script [here](https://github.com/jhen0409/react-native-debugger/blob/master/docs/getting-started.md#launch-by-cli-or-react-native-packager-macos-only))
+
+In addition to that, you can use flow for type check by this script.
+In the setting(.flowconfing), flow supposed to check all logic files without adding @flow.
+If you'd like to set it your preference, you may change .flowconfig file.
+
+`yarn flow`
 
 
 #### Issues
