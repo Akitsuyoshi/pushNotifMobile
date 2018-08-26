@@ -1,4 +1,4 @@
-# boilarplate_for_reactNative
+# boilerplate_for_reactNative
 This was created during my time as a student at Code Chrysalis
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
@@ -6,17 +6,18 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 ## Table of Contents
 
-* [Environment](#Environment)
+* [Environment](#environment)
 * [Prerequisite](#prerequisite)
-* [Quick Start](#Quick-start)
-* [Environment Variables](#Set-up-Environmental-Variables)
-* [Available Scripts](#Here-is-the-scripts-you-can-use)
-* [Debugging](#Debugging)
+* [Quick Start](#quick-start)
+* [Environment Variables](#set-up-Environmental-Variables)
+* [Available Scripts](#here-is-the-scripts-you-can-use)
+* [Debugging](#debugging)
 * [Customizing App Display Name and Icon](#customizing-app-display-name-and-icon)
 * [Sharing and Deployment](#sharing-and-deployment)
   * [Publishing to Expo's React Native Community](#publishing-to-expos-react-native-community)
   * [Building an Expo "standalone" app](#building-an-expo-standalone-app)
   * [Ejecting from Create React Native App](#ejecting-from-create-react-native-app)
+* [Issues](#issues)
 
 #### Environment
 - Mac OS High Sierra
@@ -26,7 +27,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 - I use homebrew when installing dependencies
 
 
-#### prerequisite
+#### Prerequisite
 
 if homebrew is not installed in local machine, you can get the way to install in [here](https://docs.brew.sh/Installation)
 ```
@@ -116,7 +117,7 @@ Now you have debugger tool and set it up, you can use the tool by hit this scrip
 (You can see what happened in the script [here](https://github.com/jhen0409/react-native-debugger/blob/master/docs/getting-started.md#launch-by-cli-or-react-native-packager-macos-only))
 
 
-Issues
+#### Issues
 ------
 
 Feel free to submit issues and enhancement requests.
