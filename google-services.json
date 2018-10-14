@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "128726333537",
+    "firebase_url": "https://mobilewithexpo.firebaseio.com",
+    "project_id": "mobilewithexpo",
+    "storage_bucket": "mobilewithexpo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128726333537:android:0045b648e6a1adf8",
+        "android_client_info": {
+          "package_name": "com.mobilesubscription"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128726333537-kfnkji00hrjc4tg7jpv46t9rm5b2tm8p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFxIWNLb6wDsfZpdE9RJDJRh4L2lYrZXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
