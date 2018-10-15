@@ -29,6 +29,7 @@ const subscribe = async (deviceName, os) => {
       },
     });
     console.log(`Success : ${response.json()}`);
+    return response.json();
   } catch (error) {
     console.log(error);
     return error;

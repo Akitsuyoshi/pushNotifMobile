@@ -4,8 +4,10 @@ import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dia
 
 import { Notifications } from 'expo';
 import uniqueId from 'react-native-unique-id';
+import io from 'socket.io-client';
 import { subscribe, unSubscribe, openByNotification } from './api';
 
+const socket = io('http://10.74.119.41:8001', { transports: ['websocket'] });
 const ham = require('./img/hamtarou.gif');
 
 const slideAnimation = new SlideAnimation({
@@ -43,10 +45,12 @@ export default class App extends Component<Props> {
     const { notification } = this.state;
     console.log(JSON.stringify(notification.data));
     this.notificationSubscription = Notifications.addListener(this.handleNotification);
+    this.socket = socket.on('disconnect', () => console.log('disconnect'));
   }
 
   componentWillUnmount() {
     this.notificationSubscription = Notifications.removeListener(this.handleNotification);
+    this.socket = socket.on('connection', () => console.log('new client connect'));
   }
 
   handleNotification = notification => {
@@ -61,9 +65,9 @@ export default class App extends Component<Props> {
     try {
       const deviceName = await uniqueId();
       const os = Platform.OS;
-      console.log('register');
+
       const isSubscribed = await subscribe(deviceName, os);
-      console.log(isSubscribed);
+
       return isSubscribed ? '' : this.popupDialog.show();
     } catch (error) {
       console.log(error);
@@ -75,6 +79,12 @@ export default class App extends Component<Props> {
     try {
       const deviceName = await uniqueId();
       const os = Platform.OS;
+
+      this.socket.emit('update subscriber', {
+        name: deviceName,
+        os,
+        isSubscribed: false,
+      });
 
       return unSubscribe(deviceName, os);
     } catch (error) {
