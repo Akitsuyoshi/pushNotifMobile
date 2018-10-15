@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Button, Platform, Dimensions, Image } from 'react-native';
+import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog';
+
 import { Notifications } from 'expo';
 import uniqueId from 'react-native-unique-id';
-
 import { subscribe, unSubscribe, openByNotification } from './api';
+
+const ham = require('./img/hamtarou.gif');
+
+const slideAnimation = new SlideAnimation({
+  toValue: 0,
+  slideFrom: 'bottom',
+  useNativeDriver: true,
+});
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -31,6 +40,8 @@ export default class App extends Component<Props> {
   };
 
   componentDidMount() {
+    const { notification } = this.state;
+    console.log(JSON.stringify(notification.data));
     this.notificationSubscription = Notifications.addListener(this.handleNotification);
   }
 
@@ -50,8 +61,10 @@ export default class App extends Component<Props> {
     try {
       const deviceName = await uniqueId();
       const os = Platform.OS;
-
-      return subscribe(deviceName, os);
+      console.log('register');
+      const isSubscribed = await subscribe(deviceName, os);
+      console.log(isSubscribed);
+      return isSubscribed ? '' : this.popupDialog.show();
     } catch (error) {
       console.log(error);
       return error;
@@ -73,7 +86,7 @@ export default class App extends Component<Props> {
   sendNotifToServer = async () => {
     try {
       const deviceName = await uniqueId();
-      console.log('heer');
+
       return openByNotification(deviceName, true);
     } catch (error) {
       console.log(error);
@@ -82,11 +95,9 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const { notification } = this.state;
     return (
       <View style={styles.container}>
         <Text>Subscription Button</Text>
-        <Text>Data: {JSON.stringify(notification.data)}</Text>
         <Button
           style={styles.button}
           raised
@@ -96,7 +107,8 @@ export default class App extends Component<Props> {
             width: 200,
             marginLeft: 0,
           }}
-          onPress={this.register}
+          // onPress={this.register}
+          onPress={() => this.register() && this.popupDialog.show()}
         />
         <View style={styles.spacer} />
         <Button
@@ -106,6 +118,25 @@ export default class App extends Component<Props> {
           title="Unsubscribe"
           onPress={this.unRegister}
         />
+        <PopupDialog
+          dialogAnimation={slideAnimation}
+          ref={popupDialog => {
+            this.popupDialog = popupDialog;
+          }}
+          dialogTitle={<DialogTitle title="Subscribed" />}
+        >
+          <View style={{ width: '100%' }}>
+            <Image
+              style={{
+                margin: 'auto',
+                width: '100%',
+                height: 'auto',
+                minHeight: '100%',
+              }}
+              source={ham}
+            />
+          </View>
+        </PopupDialog>
       </View>
     );
   }
